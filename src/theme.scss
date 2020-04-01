@@ -1,0 +1,17 @@
+/* The following block can be included in a custom.scss */
+
+/* make the customizations */
+$theme-colors: (
+  "info": #950740,
+  "danger": #6f2232,
+  "primary": #c3073f,
+  "light": #cecece,
+  "dark": #1a1a1d,
+);
+
+@import url("https://fonts.googleapis.com/css2?family=Scada&display=swap");
+
+$font-family-sans-serif: "Scada", sans-serif;
+
+/* import bootstrap to set changes */
+@import "~bootstrap/scss/bootstrap";

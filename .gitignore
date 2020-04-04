@@ -1,7 +1,10 @@
 node_modules
 .cache/
 dist/
+public/
 .env
 .DS_Store
 coverage/
 .vscode/
+.firebase/
+firebase-debug.log

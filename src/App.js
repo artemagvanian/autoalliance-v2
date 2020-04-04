@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Header from "./Header";
 import GoodsList from "./GoodsList";
 import BasketContext from "./BasketContext";
+import Firebase, { FirebaseContext } from "./Firebase";
 import "./App.scss";
 
 class App extends React.Component {
@@ -37,4 +38,9 @@ class App extends React.Component {
   };
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <FirebaseContext.Provider value={new Firebase()}>
+    <App />
+  </FirebaseContext.Provider>,
+  document.getElementById("root")
+);

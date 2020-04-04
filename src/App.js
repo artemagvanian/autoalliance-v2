@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Container, Row, Col } from "react-bootstrap";
 import Header from "./Header";
+import GoodsList from "./GoodsList";
 import "./App.scss";
 
 class App extends React.Component {
@@ -9,11 +9,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <Container>
-          <Row>
-            <Col></Col>
-          </Row>
-        </Container>
+        <GoodsList category="Толщиномеры" />
       </div>
     );
   };

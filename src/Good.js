@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Card, Button, Badge, Row } from "react-bootstrap";
+import BasketContext from "./BasketContext";
 
 class Good extends React.Component {
   render() {
@@ -34,9 +35,17 @@ class Good extends React.Component {
               </p>
               <Row>
                 <Col className="pr-1">
-                  <Button variant="outline-primary" block>
-                    Купить
-                  </Button>
+                  <BasketContext.Consumer>
+                    {({ handleBasketChange }) => (
+                      <Button
+                        variant="outline-primary"
+                        block
+                        onClick={() => handleBasketChange(this.props.good)}
+                      >
+                        Купить
+                      </Button>
+                    )}
+                  </BasketContext.Consumer>
                 </Col>
                 <Col className="pl-1">
                   <Button variant="outline-info" block>

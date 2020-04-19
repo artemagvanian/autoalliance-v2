@@ -2,12 +2,13 @@ import React from "react";
 import { Container, Navbar, Nav, Row, Col } from "react-bootstrap";
 import Basket from "./Basket";
 import SearchBar from "./SearchBar";
+import { Link } from "@reach/router";
 
 const links = [
-  { href: "#home", text: "Главная" },
-  { href: "#goods", text: "Каталог товаров" },
-  { href: "#services", text: "Услуги" },
-  { href: "#about", text: "О нас" },
+  { href: "/", text: "Главная" },
+  { href: "goods", text: "Каталог товаров" },
+  { href: "services", text: "Услуги" },
+  { href: "about", text: "О нас" },
 ];
 
 class Header extends React.Component {
@@ -23,13 +24,13 @@ class Header extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 {links.map((link) => (
-                  <Nav.Link
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     key={link.href}
-                    className="text-light"
+                    className="text-light ml-4"
                   >
                     {link.text}
-                  </Nav.Link>
+                  </Link>
                 ))}
               </Nav>
               <Row>

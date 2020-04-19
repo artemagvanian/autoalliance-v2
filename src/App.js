@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Header from "./Header";
-import GoodsList from "./GoodsList";
 import BasketContext from "./BasketContext";
-import HomeCarousel from "./HomeCarousel";
 import Firebase, { FirebaseContext } from "./Firebase";
+import { Router } from "@reach/router";
 import "./App.scss";
+import Home from "./Home";
+import About from "./About";
 
 class App extends React.Component {
   constructor(props) {
@@ -32,9 +32,10 @@ class App extends React.Component {
           handleBasketChange: this.state.handleBasketChange,
         }}
       >
-        <Header />
-        <HomeCarousel />
-        <GoodsList category="Толщиномеры" />
+        <Router>
+          <Home path="/" />
+          <About path="about" />
+        </Router>
       </BasketContext.Provider>
     );
   };

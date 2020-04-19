@@ -1,8 +1,34 @@
 import React from "react";
 import { Button, Popover, OverlayTrigger } from "react-bootstrap";
 import BasketContext from "./BasketContext";
+import BasketTable from "./BasketTable";
+import { FirebaseContext } from "./Firebase";
+import ConfirmModal from "./ConfirmModal";
 
 class Basket extends React.Component {
+  static contextType = FirebaseContext;
+  constructor(props) {
+    super(props);
+    this.state = { showModal: false };
+  }
+  handleClose = () => {
+    this.setState({ showModal: false });
+  };
+  handleOpen = () => {
+    this.setState({ showModal: true });
+  };
+  handleCheckout = async (basket) => {
+    let firebase = this.context;
+    await firebase.db
+      .collection("orders")
+      .doc()
+      .set({
+        basket: basket.map((i) => {
+          return { title: i.title, price: i.price.current };
+        }),
+      });
+    this.handleClose();
+  };
   render() {
     const goods = (
       <Popover id="popover-basic" style={{ maxWidth: 320 }}>
@@ -16,27 +42,8 @@ class Basket extends React.Component {
                 <p>Тут ничего нет...</p>
               ) : (
                 <div>
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">№</th>
-                        <th scope="col">Название</th>
-                        <th scope="col">Количество</th>
-                        <th scope="col">Цена</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {basket.map((good, index) => (
-                        <tr key={good.id}>
-                          <th scope="row">{index + 1}</th>
-                          <td>{good.title}</td>
-                          <td>1</td>
-                          <td>{good.price.current} UAH</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <Button variant="info" block>
+                  <BasketTable basket={basket} />
+                  <Button variant="info" block onClick={this.handleOpen}>
                     Подтвердить покупку
                   </Button>
                 </div>
@@ -47,11 +54,18 @@ class Basket extends React.Component {
       </Popover>
     );
     return (
-      <OverlayTrigger trigger="focus" placement="bottom" overlay={goods}>
-        <Button variant="info" block>
-          Корзина
-        </Button>
-      </OverlayTrigger>
+      <div>
+        <OverlayTrigger trigger="focus" placement="bottom" overlay={goods}>
+          <Button variant="info" block>
+            Корзина
+          </Button>
+        </OverlayTrigger>
+        <ConfirmModal
+          showModal={this.state.showModal}
+          handleClose={this.handleClose}
+          handleCheckout={this.handleCheckout}
+        />
+      </div>
     );
   }
 }

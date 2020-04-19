@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/analytics";
+import "firebase/storage";
 import React from "react";
 
 const config = {
@@ -18,6 +19,7 @@ class Firebase {
   constructor() {
     firebase.initializeApp(config);
     this.db = firebase.firestore();
+    this.storage = firebase.storage();
   }
 }
 

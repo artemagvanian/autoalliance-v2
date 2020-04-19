@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Header from "./Header";
 import GoodsList from "./GoodsList";
 import BasketContext from "./BasketContext";
+import HomeCarousel from "./HomeCarousel";
 import Firebase, { FirebaseContext } from "./Firebase";
 import "./App.scss";
 
@@ -32,6 +33,7 @@ class App extends React.Component {
         }}
       >
         <Header />
+        <HomeCarousel />
         <GoodsList category="Толщиномеры" />
       </BasketContext.Provider>
     );

@@ -4,8 +4,10 @@ import BasketContext from "./BasketContext";
 import Firebase, { FirebaseContext } from "./Firebase";
 import { Router } from "@reach/router";
 import "./App.scss";
-import Home from "./Home";
-import About from "./About";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Goods from "./pages/Goods";
+import Services from "./pages/Services";
 
 class App extends React.Component {
   constructor(props) {
@@ -35,6 +37,8 @@ class App extends React.Component {
         <Router>
           <Home path="/" />
           <About path="about" />
+          <Goods path="goods" />
+          <Services path="services" />
         </Router>
       </BasketContext.Provider>
     );

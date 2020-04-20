@@ -25,7 +25,7 @@ class Good extends React.Component {
       <Col xs={12} sm={6} md={4} lg={3} className="my-3">
         <Card>
           <div>
-            <Card.Img variant="top" src={this.state.imageUrl} />
+            <Card.Img variant="top" src={this.state.imageUrl} alt="" />
             {this.props.good.badge ? (
               <Badge
                 pill

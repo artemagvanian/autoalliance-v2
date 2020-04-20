@@ -6,9 +6,9 @@ import { Link } from "@reach/router";
 
 const links = [
   { href: "/", text: "Главная" },
-  { href: "goods", text: "Каталог товаров" },
-  { href: "services", text: "Услуги" },
-  { href: "about", text: "О нас" },
+  { href: "/goods", text: "Каталог товаров" },
+  { href: "/services", text: "Услуги" },
+  { href: "/about", text: "О нас" },
 ];
 
 class Header extends React.Component {
@@ -17,8 +17,10 @@ class Header extends React.Component {
       <header>
         <Navbar bg="dark" expand="lg" variant="dark">
           <Container>
-            <Navbar.Brand href="#home" className="text-light">
-              AutoAlliance
+            <Navbar.Brand className="text-light">
+              <Link to="/" style={{ color: "white" }}>
+                AutoAlliance
+              </Link>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -34,7 +36,12 @@ class Header extends React.Component {
                 ))}
               </Nav>
               <Row>
-                <Col xs={12} sm={8} className="p-2">
+                <Col
+                  xs={12}
+                  sm={8}
+                  className="p-2"
+                  style={{ visibility: "hidden" }}
+                >
                   <SearchBar />
                 </Col>
                 <Col xs={12} sm={4} className="p-2">

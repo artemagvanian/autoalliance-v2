@@ -1,17 +1,31 @@
 import React from "react";
-import { Container, Navbar, Nav, Row, Col } from "react-bootstrap";
+import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import Basket from "./Basket";
-import SearchBar from "./SearchBar";
 import { Link } from "@reach/router";
+import InfoModal from "./InfoModal";
 
 const links = [
   { href: "/", text: "Главная" },
   { href: "/goods", text: "Каталог товаров" },
   { href: "/services", text: "Услуги" },
   { href: "/about", text: "О нас" },
+  { href: "/platform", text: "Автоплощадка" },
 ];
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { showInfo: false };
+  }
+
+  handleOpenInfo = () => {
+    this.setState({ showInfo: true });
+  };
+
+  handleCloseInfo = () => {
+    this.setState({ showInfo: false });
+  };
+
   render() {
     return (
       <header>
@@ -29,25 +43,26 @@ class Header extends React.Component {
                   <Link
                     to={link.href}
                     key={link.href}
-                    className="text-light ml-4"
+                    className="text-light ml-4 my-2 d-block"
                   >
                     {link.text}
                   </Link>
                 ))}
               </Nav>
-              <Row>
-                <Col
-                  xs={12}
-                  sm={8}
-                  className="p-2"
-                  style={{ visibility: "hidden" }}
+              <Basket className="my-2" />
+              <div>
+                <Button
+                  className="ml-lg-3 ml-0 my-2"
+                  block
+                  onClick={this.handleOpenInfo}
                 >
-                  <SearchBar />
-                </Col>
-                <Col xs={12} sm={4} className="p-2">
-                  <Basket />
-                </Col>
-              </Row>
+                  Свяжитесь с нами
+                </Button>
+                <InfoModal
+                  show={this.state.showInfo}
+                  handleClose={this.handleCloseInfo}
+                />
+              </div>
             </Navbar.Collapse>
           </Container>
         </Navbar>

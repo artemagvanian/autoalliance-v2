@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const ThemeContext = createContext({ basket: [], handleBasketChange() {} });
+const BasketContext = createContext({ basket: [], handleBasketChange() {} });
 
-export default ThemeContext;
+export default BasketContext;

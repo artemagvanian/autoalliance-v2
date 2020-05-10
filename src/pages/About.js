@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "../Header";
 import { Container } from "react-bootstrap";
 import { FirebaseContext } from "../Firebase";
+import Footer from "../Footer";
 
 const images = ["about.jpg"];
 
@@ -30,7 +31,7 @@ export class About extends Component {
             className="my-4 bg-secondary p-3 rounded"
             style={{ color: "white" }}
           >
-            <h1 className="display-1 text-center mt-4">Autoalliance</h1>
+            <h1 className="text-center mt-4 d-block display-1">Autoalliance</h1>
             <p className="lead my-5 text-justify mx-4">
               Компания VVV-Group является разработчиком автомобильных и
               промышленных толщиномеров лакокрасочного покрытия. Мы представлены
@@ -52,6 +53,7 @@ export class About extends Component {
             </p>
           </div>
         </Container>
+        <Footer />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "../Header";
 import GoodsList from "../GoodsList";
+import Footer from "../Footer";
 
 export class Goods extends Component {
   render() {
@@ -8,6 +9,7 @@ export class Goods extends Component {
       <div>
         <Header />
         <GoodsList category="Толщиномеры" />
+        <Footer />
       </div>
     );
   }

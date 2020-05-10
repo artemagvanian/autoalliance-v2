@@ -16,5 +16,7 @@ $theme-colors: (
 
 $font-family-sans-serif: "Scada", sans-serif;
 
+$enable-responsive-font-sizes: true;
+
 /* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";

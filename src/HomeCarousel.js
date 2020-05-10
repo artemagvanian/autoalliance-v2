@@ -2,35 +2,47 @@ import React from "react";
 import { Carousel, Container } from "react-bootstrap";
 import { FirebaseContext } from "./Firebase";
 
-const images = ["logo.jpg", "logo.jpg", "logo.jpg"];
-
 class HomeCarousel extends React.Component {
   static contextType = FirebaseContext;
   constructor(props) {
     super(props);
-    this.state = { imageUrls: [] };
+    this.state = {
+      images: [
+        { url: "services/1.jpeg", caption: "Автодиагностика" },
+        {
+          url: "services/4.jpeg",
+          caption: "Программирование блоков управления",
+        },
+        { url: "services/3.jpeg", caption: "Длинное кодирование" },
+        { url: "services/6.jpeg", caption: "Автоплощадка" },
+        { url: "services/7.jpeg", caption: "Авто из США" },
+        { url: "services/8.jpeg", caption: "Подбор авто под ключ" },
+        { url: "services/9.jpeg", caption: "Автострахование" },
+        { url: "services/10.jpeg", caption: "Тест PX / El Power" },
+      ],
+    };
   }
   async componentDidMount() {
     let firebase = this.context;
-    let imageUrls = [];
-    for (const i of images) {
-      const url = await firebase.storage.ref(i).getDownloadURL();
-      imageUrls.push(url);
+    for (let i = 0; i < this.state.images.length; i++) {
+      const url = await firebase.storage
+        .ref(this.state.images[i].url)
+        .getDownloadURL();
+      console.log(url);
+      this.state.images[i].url = url;
+      //TODO: rewrite
+      this.setState({});
     }
-    this.setState({ imageUrls });
   }
   render() {
     return (
       <Container className="mt-4">
         <Carousel>
-          {this.state.imageUrls.map((url) => (
-            <Carousel.Item key={url}>
-              <img className="d-block w-100" src={url} alt="First slide" />
+          {this.state.images.map((d, i) => (
+            <Carousel.Item key={i}>
+              <img className="d-block w-100" src={d.url} alt="First slide" />
               <Carousel.Caption>
-                <h3>Slide label</h3>
-                <p>
-                  Nulla vitae elit libero, a pharetra augue mollis interdum.
-                </p>
+                <h3>{d.caption}</h3>
               </Carousel.Caption>
             </Carousel.Item>
           ))}

@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Goods from "./pages/Goods";
 import Services from "./pages/Services";
+import Details from "./pages/Details";
+import Platform from "./pages/Platform";
 
 class App extends React.Component {
   constructor(props) {
@@ -39,6 +41,8 @@ class App extends React.Component {
           <About path="about" />
           <Goods path="goods" />
           <Services path="services" />
+          <Details path="details/:goodId" />
+          <Platform path="platform" />
         </Router>
       </BasketContext.Provider>
     );

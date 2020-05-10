@@ -2,7 +2,7 @@ import React from "react";
 
 class BasketTable extends React.Component {
   render = () => {
-    return (
+    return this.props.basket.length > 0 ? (
       <table className="table">
         <thead>
           <tr>
@@ -23,6 +23,8 @@ class BasketTable extends React.Component {
           ))}
         </tbody>
       </table>
+    ) : (
+      <p>Ваша корзина пуста</p>
     );
   };
 }

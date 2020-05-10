@@ -2,6 +2,7 @@ import React from "react";
 import { Col, Card, Button, Badge, Row } from "react-bootstrap";
 import BasketContext from "./BasketContext";
 import { FirebaseContext } from "./Firebase";
+import { Link } from "@reach/router";
 
 class Good extends React.Component {
   static contextType = FirebaseContext;
@@ -67,15 +68,17 @@ class Good extends React.Component {
                         block
                         onClick={() => handleBasketChange(this.props.good)}
                       >
-                        Купить
+                        В корзину
                       </Button>
                     )}
                   </BasketContext.Consumer>
                 </Col>
                 <Col className="pl-1">
-                  <Button variant="outline-info" block>
-                    Детали
-                  </Button>
+                  <Link to={`/details/${this.props.good.id}`}>
+                    <Button variant="outline-info" block>
+                      Детали
+                    </Button>
+                  </Link>
                 </Col>
               </Row>
             </Card.Text>

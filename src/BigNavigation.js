@@ -10,7 +10,7 @@ export class BigNavigation extends Component {
     this.state = {
       images: [
         "main/stripe.jpg",
-        "thumb_cm-206z-1.jpg",
+        "thumb_tg-8828-plus-1.jpg",
         "services/thumb_9.jpeg",
         "services/thumb_12.jpeg",
         "services/thumb_11.jpeg",

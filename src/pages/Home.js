@@ -13,10 +13,9 @@ export class Home extends Component {
         <Header />
         <BigNavigation />
         <Container>
-          <h2 className="text-center">Подробнее о наших услугах</h2>
+          <h2 className="text-center">Наши услуги</h2>
         </Container>
         <HomeCarousel />
-        {/* <GoodsList category="Толщиномеры" /> */}
         <Footer />
       </div>
     );

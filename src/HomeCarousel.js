@@ -18,7 +18,7 @@ class HomeCarousel extends React.Component {
         { url: "services/7.jpeg", caption: "Авто из США" },
         { url: "services/8.jpeg", caption: "Подбор авто под ключ" },
         { url: "services/9.jpeg", caption: "Автострахование" },
-        { url: "services/10.jpeg", caption: "Тест PX / El Power" },
+        { url: "services/10.jpeg", caption: "" },
       ],
     };
   }

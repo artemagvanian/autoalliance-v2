@@ -8,8 +8,8 @@ const images = [
   "services/1.jpeg",
   "services/2.jpeg",
   "services/3.jpeg",
-  "services/4.jpeg",
   "services/5.jpeg",
+  "services/4.jpeg",
 ];
 
 export class Services extends Component {
@@ -77,7 +77,7 @@ export class Services extends Component {
             </p>
             <img src={this.state.imageUrls[3]} alt="" className="w-100"></img>
             <p className="lead my-5 text-justify">
-              Проверка юридической чистоты авто
+              Проверка юридической чистоты авто, автострахование
             </p>
             <img src={this.state.imageUrls[4]} alt="" className="w-100"></img>
           </div>

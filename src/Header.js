@@ -10,6 +10,7 @@ const links = [
   { href: "/services", text: "Услуги" },
   { href: "/about", text: "О нас" },
   { href: "/platform", text: "Автоплощадка" },
+  { href: "/partners", text: "Партнёры" },
 ];
 
 class Header extends React.Component {

@@ -10,6 +10,7 @@ import Goods from "./pages/Goods";
 import Services from "./pages/Services";
 import Details from "./pages/Details";
 import Platform from "./pages/Platform";
+import Partners from "./pages/Partners";
 
 class App extends React.Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class App extends React.Component {
           <Services path="services" />
           <Details path="details/:goodId" />
           <Platform path="platform" />
+          <Partners path="partners" />
         </Router>
       </BasketContext.Provider>
     );

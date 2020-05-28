@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Container, Card, CardGroup, Button, Image } from "react-bootstrap";
+import {
+  Container,
+  Card,
+  CardGroup,
+  Button,
+  Image,
+  CardDeck,
+} from "react-bootstrap";
 import { FirebaseContext } from "./Firebase";
 import { Link } from "@reach/router";
 
@@ -13,7 +20,15 @@ export class BigNavigation extends Component {
         "thumb_tg-8828-plus-1.jpg",
         "services/thumb_9.jpeg",
         "services/thumb_12.jpeg",
+        "partners/thumb_cert.jpeg",
         "services/thumb_11.jpeg",
+        "partners/thumb_caucasus.jpg",
+        "partners/thumb_avtoritet.jpeg",
+        "partners/thumb_vvv.png",
+        "partners/thumb_metallic.jpg",
+        "partners/thumb_broker.jpeg",
+        "partners/thumb_klyuch.jpg",
+        "partners/thumb_mariupolavto.jpeg",
       ],
     };
   }
@@ -92,11 +107,23 @@ export class BigNavigation extends Component {
           <Card>
             <Card.Img variant="top" src={this.state.images[4]} alt="" />
             <Card.Body>
-              <Card.Title>Автоплощадка</Card.Title>
+              <Card.Title>Сертификация</Card.Title>
+              <Card.Text>Помощь в прохождении сертификации авто</Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <Link to={"/platform"}>
+                <Button variant="primary" block>
+                  Узнать больше
+                </Button>
+              </Link>
+            </Card.Footer>
+          </Card>
+          <Card>
+            <Card.Img variant="top" src={this.state.images[5]} alt="" />
+            <Card.Body>
+              <Card.Title>Доставка авто</Card.Title>
               <Card.Text>
-                Компания AUTOALLIANCE сотрудничает с крупнейшей автоплощадкой
-                AVTOРИТЕТ которая предоставляет большой выбор авто из США а
-                также авто Европейского рынка.
+                Помощь в доставке автомобилей из порта Одессы и Южного
               </Card.Text>
             </Card.Body>
             <Card.Footer>
@@ -108,6 +135,57 @@ export class BigNavigation extends Component {
             </Card.Footer>
           </Card>
         </CardGroup>
+        <h1 className="my-5 text-center">Наши партнёры</h1>
+        <CardDeck>
+          <Card>
+            <Card.Img variant="top" src={this.state.images[6]} alt="" />
+            <Card.Body>
+              <Card.Title className="text-center">
+                Caucasus Auto Import
+              </Card.Title>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Img variant="top" src={this.state.images[7]} alt="" />
+            <Card.Body>
+              <Card.Title className="text-center">Avtoритет</Card.Title>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Img variant="top" src={this.state.images[8]} alt="" />
+            <Card.Body>
+              <Card.Title className="text-center">VVV-Group</Card.Title>
+            </Card.Body>
+          </Card>
+        </CardDeck>
+        <CardDeck className="mt-4">
+          <Card>
+            <Card.Img variant="top" src={this.state.images[9]} alt="" />
+            <Card.Body>
+              <Card.Title className="text-center">
+                Metallic Auto Garage
+              </Card.Title>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Img variant="top" src={this.state.images[10]} alt="" />
+            <Card.Body>
+              <Card.Title className="text-center">Брокерские услуги</Card.Title>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Img variant="top" src={this.state.images[11]} alt="" />
+            <Card.Body>
+              <Card.Title className="text-center">Ключ-сервис</Card.Title>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Img variant="top" src={this.state.images[12]} alt="" />
+            <Card.Body>
+              <Card.Title className="text-center">Мариуполь-Авто</Card.Title>
+            </Card.Body>
+          </Card>
+        </CardDeck>
       </Container>
     );
   }

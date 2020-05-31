@@ -1,135 +1,132 @@
-import React, { Component } from "react";
-import Header from "../Header";
+import React, { useState } from "react";
 import { Row, Col, Container, Button, Badge } from "react-bootstrap";
-import BasketContext from "../BasketContext";
-import { FirebaseContext } from "../Firebase";
-import InfoModal from "../InfoModal";
-import Footer from "../Footer";
 
-export class Details extends Component {
-  static contextType = FirebaseContext;
-  constructor(props) {
-    super(props);
-    this.state = { good: {}, imageUrl: "", showModal: false };
-  }
-  async componentDidMount() {
-    let firebase = this.context;
-    await firebase.db
-      .collection("goods")
-      .doc(this.props.goodId)
-      .get()
-      .then((doc) => {
-        this.setState({ good: doc.data() });
-      });
+import Header from "../components/Header";
+import BasketContext from "../components/BasketContext";
+import InfoModal from "../components/InfoModal";
+import Footer from "../components/Footer";
 
-    if (this.state.good.image) {
-      firebase.storage
-        .ref("thumb_" + this.state.good.image.primary)
-        .getDownloadURL()
-        .then((url) => {
-          this.setState({ imageUrl: url });
-        });
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
+import BlockContent from "@sanity/block-content-to-react";
+
+const Details = (props) => {
+  const GET_THICKNESS_GAUGE = gql`
+    query {
+      allThicknessGauge(where: { slug: { current: { eq: "${props.goodId}" } } }) {
+        title
+        oldPrice
+        newPrice
+        slug {
+          current
+        }
+        availability
+        shortDescription
+        descriptionRaw
+        photos {
+          asset {
+            url
+          }
+        }
+      }
     }
-  }
+  `;
 
-  handleClose() {
-    this.setState({ showModal: false });
-  }
+  let { showModal, setShowModal } = useState();
 
-  handleOpen() {
-    this.setState({ showModal: true });
-  }
+  const { loading, error, data } = useQuery(GET_THICKNESS_GAUGE);
 
-  render() {
-    return (
-      <>
-        <Header />
-        <Container>
-          <Row className="my-4">
-            <Col xs="12" md="6">
-              <div>
-                <img src={this.state.imageUrl} alt="" className="w-100"></img>
-                {this.state.good.badge ? (
-                  <Badge
-                    pill
-                    variant={this.state.good.badge.type}
-                    style={{ position: "absolute", top: 5, left: 5 }}
-                  >
-                    {this.state.good.badge.text}
-                  </Badge>
-                ) : (
-                  ""
-                )}
-              </div>
-            </Col>
-            <Col xs="12" md="6">
-              <h1 className="my-4">{this.state.good.title}</h1>
-              <div>
-                {this.state.good.price ? (
-                  <div>
-                    <p className="text-light m-0">
-                      {this.state.good.price.previous ? (
-                        <strike>
-                          {this.state.good.price.previous + " UAH"}
-                        </strike>
-                      ) : (
-                        <br />
-                      )}
-                    </p>
-                    <p className="text-primary" style={{ fontSize: 40 }}>
-                      {this.state.good.price.current + " UAH"}
-                    </p>
-                  </div>
-                ) : (
-                  <br />
-                )}
-                {this.state.good.stock ? (
-                  <p className={"text-" + this.state.good.stock.type + " lead"}>
-                    {this.state.good.stock.text}
-                  </p>
-                ) : (
-                  <br />
-                )}
-              </div>
-              <Row>
-                <Col>
-                  <BasketContext.Consumer>
-                    {({ handleBasketChange }) => (
-                      <Button
-                        variant="outline-primary"
-                        block
-                        onClick={() => handleBasketChange(this.state.good)}
-                      >
-                        Купить
-                      </Button>
+  if (loading) return "Loading...";
+  if (error) return `Error! ${error.message}`;
+
+  const good = data.allThicknessGauge[0];
+
+  return (
+    <>
+      <Header />
+      <Container>
+        <Row className="my-4">
+          <Col xs="12" md="6">
+            <div>
+              <img
+                src={good.photos[0].asset.url}
+                alt=""
+                className="w-100"
+              ></img>
+              {good.badge ? (
+                <Badge
+                  pill
+                  variant={good.badge.type}
+                  style={{ position: "absolute", top: 5, left: 5 }}
+                >
+                  {good.badge.text}
+                </Badge>
+              ) : (
+                ""
+              )}
+            </div>
+          </Col>
+          <Col xs="12" md="6">
+            <h1 className="my-4">{good.title}</h1>
+            <div>
+              {good.oldPrice ? (
+                <div>
+                  <p className="text-light m-0">
+                    {good.oldPrice ? (
+                      <strike>{good.oldPrice + " UAH"}</strike>
+                    ) : (
+                      <br />
                     )}
-                  </BasketContext.Consumer>
-                </Col>
-                <Col>
-                  <Button
-                    variant="outline-primary"
-                    block
-                    onClick={() => this.handleOpen()}
-                  >
-                    Узнать больше
-                  </Button>
-                  <InfoModal
-                    show={this.state.showModal}
-                    handleClose={() => this.handleClose()}
-                  />
-                </Col>
-              </Row>
-              <p className="lead mt-4">{this.state.good.short_description}</p>
-            </Col>
-          </Row>
-          <div
-            dangerouslySetInnerHTML={{ __html: this.state.good.description }}
-          />
-        </Container>
-        <Footer />
-      </>
-    );
-  }
-}
+                  </p>
+                  <p className="text-primary" style={{ fontSize: 40 }}>
+                    {good.newPrice + " UAH"}
+                  </p>
+                </div>
+              ) : (
+                <br />
+              )}
+              {good.availability ? (
+                <p className="text-primary">{good.availability}</p>
+              ) : (
+                <br />
+              )}
+            </div>
+            <Row>
+              <Col>
+                <BasketContext.Consumer>
+                  {({ handleBasketChange }) => (
+                    <Button
+                      variant="outline-primary"
+                      block
+                      onClick={() => handleBasketChange(good)}
+                    >
+                      Купить
+                    </Button>
+                  )}
+                </BasketContext.Consumer>
+              </Col>
+              <Col>
+                <Button
+                  variant="outline-primary"
+                  block
+                  onClick={() => setShowModal(true)}
+                >
+                  Узнать больше
+                </Button>
+                <InfoModal
+                  show={showModal}
+                  handleClose={() => setShowModal(false)}
+                />
+              </Col>
+            </Row>
+            <p className="lead mt-4">{good.shortDescription}</p>
+          </Col>
+        </Row>
+        <BlockContent blocks={good.descriptionRaw} />
+      </Container>
+      <Footer />
+    </>
+  );
+};
 
 export default Details;

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import BasketContext from "./BasketContext";
-import Firebase, { FirebaseContext } from "./Firebase";
+import BasketContext from "./components/BasketContext";
 import { Router } from "@reach/router";
+
 import "./App.scss";
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Goods from "./pages/Goods";
@@ -11,30 +12,29 @@ import Services from "./pages/Services";
 import Details from "./pages/Details";
 import Platform from "./pages/Platform";
 import Partners from "./pages/Partners";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { basket: [], handleBasketChange: this.handleBasketChange };
-  }
+const client = new ApolloClient({
+  uri: "https://peseqqli.apicdn.sanity.io/v1/graphql/production/default",
+});
 
-  handleBasketChange = (basketItem) => {
-    const filtered = this.state.basket.filter(
-      (good) => good.id == basketItem.id
-    );
+const App = () => {
+  const [basket, setBasket] = useState([]);
+
+  const handleBasketChange = (basketItem) => {
+    const filtered = basket.filter((good) => good.id == basketItem.id);
     if (filtered.length == 0) {
-      this.setState({
-        basket: this.state.basket.concat(basketItem),
-      });
+      setBasket(basket.push(basketItem));
     }
   };
 
-  render = () => {
-    return (
+  return (
+    <ApolloProvider client={client}>
       <BasketContext.Provider
         value={{
-          basket: this.state.basket,
-          handleBasketChange: this.state.handleBasketChange,
+          basket,
+          handleBasketChange,
         }}
       >
         <Router>
@@ -47,13 +47,8 @@ class App extends React.Component {
           <Partners path="partners" />
         </Router>
       </BasketContext.Provider>
-    );
-  };
-}
+    </ApolloProvider>
+  );
+};
 
-ReactDOM.render(
-  <FirebaseContext.Provider value={new Firebase()}>
-    <App />
-  </FirebaseContext.Provider>,
-  document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));

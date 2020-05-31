@@ -23,9 +23,9 @@ const App = () => {
   const [basket, setBasket] = useState([]);
 
   const handleBasketChange = (basketItem) => {
-    const filtered = basket.filter((good) => good.id == basketItem.id);
+    const filtered = basket.filter((good) => good.title == basketItem.title);
     if (filtered.length == 0) {
-      setBasket(basket.push(basketItem));
+      setBasket(basket.concat(basketItem));
     }
   };
 

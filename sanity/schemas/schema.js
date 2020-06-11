@@ -6,8 +6,14 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 import ThicknessGauge from "./ThicknessGauge";
 import Partner from "./Partner";
 import CarForSale from "./CarForSale";
+import HomeNavigationItem from "./HomeNavigationItem";
 
 export default createSchema({
   name: "default",
-  types: schemaTypes.concat([ThicknessGauge, Partner, CarForSale]),
+  types: schemaTypes.concat([
+    ThicknessGauge,
+    Partner,
+    CarForSale,
+    HomeNavigationItem,
+  ]),
 });

@@ -3,12 +3,15 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Container } from "react-bootstrap";
 
+import SEO from "../components/SEO";
+
 import Platform1 from "../../assets/platform/1.jpeg";
 import Platform2 from "../../assets/platform/2.jpeg";
 import Platform3 from "../../assets/platform/3.jpeg";
 
 const Platform = () => (
   <>
+    <SEO title="Автоплощадка Avtoритет" />
     <Header />
     <Container>
       <div className="my-4 bg-secondary p-3 rounded" style={{ color: "white" }}>

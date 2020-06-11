@@ -3,6 +3,8 @@ import { Container, Card, Row, Col, Button } from "react-bootstrap";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+import SEO from "../components/SEO";
+
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 
@@ -30,6 +32,7 @@ const Partners = () => {
 
   return (
     <>
+      <SEO title="Партнёры" />
       <Header />
       <Container>
         {data.allPartner.map((partner, index) => (

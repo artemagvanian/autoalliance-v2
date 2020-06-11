@@ -3,12 +3,15 @@ import Header from "../components/Header";
 import CarList from "../components/CarList";
 import Footer from "../components/Footer";
 
+import SEO from "../components/SEO";
+
 const Platform = () => (
-  <div>
+  <>
+    <SEO title="Автоплощадка" />
     <Header />
     <CarList />
     <Footer />
-  </div>
+  </>
 );
 
 export default Platform;

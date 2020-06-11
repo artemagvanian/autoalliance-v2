@@ -7,11 +7,14 @@ import Services3 from "../../assets/services/3.jpeg";
 import Services4 from "../../assets/services/4.jpeg";
 import Services5 from "../../assets/services/5.jpeg";
 
+import SEO from "../components/SEO";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const Services = () => (
-  <div>
+  <>
+    <SEO title="Услуги" />
     <Header />
     <Container>
       <div className="my-4 bg-secondary p-4 rounded" style={{ color: "white" }}>
@@ -60,7 +63,7 @@ const Services = () => (
       </div>
     </Container>
     <Footer />
-  </div>
+  </>
 );
 
 export default Services;

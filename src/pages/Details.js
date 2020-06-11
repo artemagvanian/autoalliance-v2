@@ -6,6 +6,8 @@ import BasketContext from "../components/BasketContext";
 import InfoModal from "../components/InfoModal";
 import Footer from "../components/Footer";
 
+import SEO from "../components/SEO";
+
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import BlockContent from "@sanity/block-content-to-react";
@@ -43,6 +45,7 @@ const Details = (props) => {
 
   return (
     <>
+      <SEO title={good.title} />
       <Header />
       <Container>
         <Row className="my-4">

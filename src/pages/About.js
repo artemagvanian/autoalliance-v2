@@ -4,10 +4,13 @@ import { Container } from "react-bootstrap";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+import SEO from "../components/SEO";
+
 import Stripe from "../../assets/index/1.jpg";
 
 const About = () => (
-  <div>
+  <>
+    <SEO title="О нас" />
     <Header />
     <Container>
       <div className="my-4 bg-secondary p-3 rounded" style={{ color: "white" }}>
@@ -29,7 +32,7 @@ const About = () => (
       </div>
     </Container>
     <Footer />
-  </div>
+  </>
 );
 
 export default About;

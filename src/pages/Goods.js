@@ -3,12 +3,15 @@ import Header from "../components/Header";
 import GoodsList from "../components/GoodsList";
 import Footer from "../components/Footer";
 
+import SEO from "../components/SEO";
+
 const Goods = () => (
-  <div>
+  <>
+    <SEO title="Каталог товаров" />
     <Header />
     <GoodsList category="Толщиномеры" />
     <Footer />
-  </div>
+  </>
 );
 
 export default Goods;

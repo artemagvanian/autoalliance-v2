@@ -5,9 +5,12 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import BigNavigation from "../components/BigNavigation";
 
+import SEO from "../components/SEO";
+
 const Home = () => {
   return (
-    <div>
+    <>
+      <SEO title="Автоальянс" />
       <Header />
       <BigNavigation />
       <Container>
@@ -15,7 +18,7 @@ const Home = () => {
       </Container>
       <HomeCarousel />
       <Footer />
-    </div>
+    </>
   );
 };
 

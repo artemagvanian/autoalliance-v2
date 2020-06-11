@@ -7,6 +7,7 @@ import ThicknessGauge from "./ThicknessGauge";
 import Partner from "./Partner";
 import CarForSale from "./CarForSale";
 import HomeNavigationItem from "./HomeNavigationItem";
+import CarouselItem from "./CarouselItem";
 
 export default createSchema({
   name: "default",
@@ -15,5 +16,6 @@ export default createSchema({
     Partner,
     CarForSale,
     HomeNavigationItem,
+    CarouselItem,
   ]),
 });

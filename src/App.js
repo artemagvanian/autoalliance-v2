@@ -12,6 +12,8 @@ import Services from "./pages/Services";
 import Details from "./pages/Details";
 import Platform from "./pages/Platform";
 import Partners from "./pages/Partners";
+import Avtoritet from "./pages/Avtoritet";
+
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 
@@ -45,6 +47,7 @@ const App = () => {
           <Details path="details/:goodId" />
           <Platform path="platform" />
           <Partners path="partners" />
+          <Avtoritet path="avtoritet" />
         </Router>
       </BasketContext.Provider>
     </ApolloProvider>

@@ -35,7 +35,7 @@ const CarList = () => {
 
   return (
     <Container className="py-4">
-      <h3>Автоплощадка</h3>
+      <h3>Автоплощадка AVTOритет – г. Мариуполь, ул. Бахчиванджи 24</h3>
       <Row>
         {data.allCarForSale.map((car, index) => (
           <Car key={index} car={car}></Car>

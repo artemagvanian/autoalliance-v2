@@ -13,6 +13,7 @@ import Details from "./pages/Details";
 import Platform from "./pages/Platform";
 import Partners from "./pages/Partners";
 import Avtoritet from "./pages/Avtoritet";
+import NotFound from "./pages/NotFound";
 
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
@@ -40,6 +41,7 @@ const App = () => {
         }}
       >
         <Router>
+          <NotFound default />
           <Home path="/" />
           <About path="about" />
           <Goods path="goods" />

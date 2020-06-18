@@ -11,6 +11,7 @@ import SEO from "../components/SEO";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import BlockContent from "@sanity/block-content-to-react";
+import { Redirect } from "@reach/router";
 
 const Details = (props) => {
   const GET_THICKNESS_GAUGE = gql`
@@ -40,6 +41,10 @@ const Details = (props) => {
 
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
+
+  if (data.allThicknessGauge.length == 0) {
+    return <Redirect to="/goods" />;
+  }
 
   const good = data.allThicknessGauge[0];
 

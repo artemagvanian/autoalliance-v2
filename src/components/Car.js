@@ -1,15 +1,22 @@
 import React from "react";
 
-import { Card, ListGroup, Col } from "react-bootstrap";
+import { Card, ListGroup, Col, Carousel } from "react-bootstrap";
 
 export default function Car({ car }) {
   return (
     <Col xs={12} sm={6} md={4} className="my-3">
       <Card>
-        <Card.Img
-          variant="top"
-          src={car.photos[0].asset.url + "?h=360&w=640&fit=min"}
-        />
+        <Carousel indicators={false}>
+          {car.photos.map((photo, index) => (
+            <Carousel.Item key={index}>
+              <img
+                className="d-block w-100"
+                src={photo.asset.url + "?h=360&w=640&fit=min"}
+                alt=""
+              />
+            </Carousel.Item>
+          ))}
+        </Carousel>
         <Card.Body>
           <Card.Title>
             {car.brand} {car.model}

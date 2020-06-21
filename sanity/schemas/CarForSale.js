@@ -18,5 +18,6 @@ export default {
     { title: "Price", name: "price", type: "number" },
     { title: "Description", name: "description", type: "text" },
     { title: "Photos", name: "photos", type: "array", of: [{ type: "image" }] },
+    { title: "Sold", name: "sold", type: "boolean" },
   ],
 };

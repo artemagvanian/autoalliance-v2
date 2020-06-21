@@ -5,7 +5,28 @@ import { Card, ListGroup, Col, Carousel } from "react-bootstrap";
 export default function Car({ car }) {
   return (
     <Col xs={12} sm={6} md={4} className="my-3">
-      <Card>
+      <Card style={{ position: "relative" }}>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0,0,0,0.75)",
+            zIndex: 999,
+            borderRadius: 5,
+            color: "white",
+            textAlign: "center",
+            fontSize: 25,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            visibility: car.sold ? "visible" : "hidden",
+          }}
+        >
+          <div>Продано</div>
+        </div>
         <Carousel indicators={false}>
           {car.photos.map((photo, index) => (
             <Carousel.Item key={index}>

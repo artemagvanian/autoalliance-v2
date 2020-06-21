@@ -17,6 +17,7 @@ const GET_CARS_FOR_SALE = gql`
       fuelType
       driveType
       price
+      sold
       description
       photos {
         asset {

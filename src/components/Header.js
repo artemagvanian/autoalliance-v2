@@ -12,7 +12,7 @@ const Header = () => {
     { href: "/goods", text: "Каталог товаров" },
     { href: "/services", text: "Услуги" },
     { href: "/about", text: "О нас" },
-    { href: "/platform", text: "Автоплощадка" },
+    // { href: "/platform", text: "Автоплощадка" },
     { href: "/partners", text: "Партнёры" },
   ];
 

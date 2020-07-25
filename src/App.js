@@ -10,7 +10,7 @@ import About from "./pages/About";
 import Goods from "./pages/Goods";
 import Services from "./pages/Services";
 import Details from "./pages/Details";
-import Platform from "./pages/Platform";
+// import Platform from "./pages/Platform";
 import Partners from "./pages/Partners";
 import Avtoritet from "./pages/Avtoritet";
 import NotFound from "./pages/NotFound";
@@ -47,7 +47,7 @@ const App = () => {
           <Goods path="goods" />
           <Services path="services" />
           <Details path="details/:goodId" />
-          <Platform path="platform" />
+          {/* <Platform path="platform" /> */}
           <Partners path="partners" />
           <Avtoritet path="avtoritet" />
         </Router>
